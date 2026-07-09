@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Our AI - Career Predictor</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            color: white;
+            min-height: 100vh;
+
+            /* Change 1: Background Image with Flask url_for */
+            background:
+            linear-gradient(rgba(15, 47, 99, 0.9), rgba(2, 4, 53, 0.95)),
+            url("{{ url_for('static', filename='Ai.png') }}");
+
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            padding: 50px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #dfefff;
+            margin-bottom: 50px;
+            display: block;
+        }
+
+        /* GRID */
+        .about-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        /* CARD */
+        .about-card {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: blur(10px);
+            padding: 40px 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: 0.4s ease;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* BLUE LINE */
+        .about-card::before{
+            content:"";
+            position:absolute;
+            left:20px;
+            top:105px;
+            width:4px;
+            height:60px;
+            background:#008cff;
+            border-radius:10px;
+        }
+
+        /* HOVER */
+        .about-card:hover {
+            transform: translateY(-12px);
+            background: rgba(255, 255, 255, 0.12);
+            border-color: #063e87;
+            box-shadow: 0 12px 35px rgba(0,140,255,0.35);
+        }
+
+        /* ICON */
+        .icon {
+            font-size: 45px;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* HEADING */
+        h3 {
+            font-size: 28px;
+            color: #fff;
+            margin-bottom: 18px;
+            padding-left: 18px;
+            line-height: 1.3;
+        }
+
+        /* PARAGRAPH */
+        p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: #dfefff;
+        }
+
+        /* BUTTON */
+        .back-btn {
+            margin-top: 50px;
+            display: inline-block;
+            padding: 12px 30px;
+            background: #063e87;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            background: white;
+            color: #063e87;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>HOW OUR AI WORKS</h1>
+
+        <span class="subtitle">
+            Step-by-step process of your career transformation
+        </span>
+
+        <div class="about-grid">
+
+            <div class="about-card">
+                <span class="icon">🔍</span>
+                <h3>Data-Driven Analysis</h3>
+                <p>
+                    Our system evaluates your academic performance,
+                    coding skills, and interests to identify the
+                    professional field where you will excel most.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <span class="icon">⚙️</span>
+                <h3>AI Technique</h3>
+                <p>
+                    We utilize Machine Learning algorithms that scan
+                    over 1,000+ career profiles to recommend the path
+                    that is perfect for you.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <span class="icon">🏁</span>
+                <h3>Personalized Roadmaps</h3>
+                <p>
+                    Beyond just prediction, we provide a complete
+                    step-by-step roadmap identifying exactly which
+                    courses and skills you need for success.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <span class="icon">📈</span>
+                <h3>Future Scouting</h3>
+                <p>
+                    By monitoring real-time industry shifts,
+                    we recommend career paths projected to
+                    have the highest demand over the next 5 years.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <span class="icon">🧠</span>
+                <h3>Analyze Your Skills</h3>
+                <p>
+                    Our AI analyzes your technical and personal
+                    skills to identify your strengths and recommend
+                    the most suitable career opportunities.
+                </p>
+            </div>
+
+            <div class="about-card">
+                <span class="icon">🎯</span>
+                <h3>Guidance</h3>
+                <p>
+                    Get step-by-step career guidance,
+                    learning recommendations, and future
+                    roadmaps to achieve your dream profession.
+                </p>
+            </div>
+
+        </div>
+
+        <a href="{{ url_for('index') }}" class="back-btn">
+            Back to Home
+        </a>
+
+    </div>
+
+</body>
+</html>

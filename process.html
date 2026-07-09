@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our AI Process - Career Predictor</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            
+            /* Change 1: Background Image with url_for */
+            background: linear-gradient(rgba(15, 47, 99, 0.9), rgba(2, 4, 53, 0.95)), 
+                        url("{{ url_for('static', filename='Ai.png.jpeg') }}");
+            
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .process-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .process-header h1 {
+            font-size: 45px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .process-header p {
+            font-size: 18px;
+            color: #dfefff;
+            max-width: 700px;
+        }
+
+        /* Timeline Style Process */
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            width: 100%;
+        }
+
+        .step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 50px;
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 20px;
+            border-left: 5px solid #063e87;
+            transition: 0.3s;
+        }
+
+        .step:hover {
+            transform: scale(1.02);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .step-num {
+            font-size: 32px;
+            font-weight: bold;
+            color: #063e87;
+            margin-right: 25px;
+            background: white;
+            min-width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+        }
+
+        .step-info h3 {
+            margin-top: 0;
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .step-info p {
+            color: #dfefff;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .back-home {
+            margin-top: 30px;
+            color: white;
+            text-decoration: none;
+            background: #063e87;
+            padding: 14px 40px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(6, 62, 135, 0.4);
+        }
+
+        .back-home:hover {
+            background: white;
+            color: #063e87;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="process-header">
+        <h1>Our Strategic Process</h1>
+        <p>A data-driven journey from identifying your potential to launching your dream career.</p>
+    </div>
+
+    <div class="timeline">
+        <div class="step">
+            <div class="step-num">01</div>
+            <div class="step-info">
+                <h3>Input Intelligence</h3>
+                <p>We start by gathering your academic history, technical proficiencies, and soft skills. This creates a comprehensive digital fingerprint of your professional potential.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">02</div>
+            <div class="step-info">
+                <h3>ML Pattern Matching</h3>
+                <p>Our Machine Learning engine compares your profile against thousands of successful career trajectories to find the mathematical "best fit" for your unique skills.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">03</div>
+            <div class="step-info">
+                <h3>Dynamic Skill Gap Analysis</h3>
+                <p>Once a path is identified, the system detects what you are missing. It highlights specific tools or certifications needed to make you 100% industry-ready.</p>
+            </div>
+        </div>
+
+        <div class="step">
+            <div class="step-num">04</div>
+            <div class="step-info">
+                <h3>Future-Proof Validation</h3>
+                <p>The final step cross-references your predicted path with global market demand forecasts for 2026-2030, ensuring your career is safe from automation and recession.</p>
+            </div>
+        </div>
+    </div>
+
+    <a href="{{ url_for('index') }}" class="back-home">Back to Home</a>
+
+</body>
+</html>

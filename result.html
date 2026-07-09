@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Top 10 Career Predictions</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', sans-serif; 
+            background: #020435; 
+            color: white; 
+            text-align: center; 
+            padding: 40px; 
+        }
+        .container { 
+            max-width: 600px; 
+            margin: auto; 
+            background: rgba(255,255,255,0.05); 
+            padding: 30px; 
+            border-radius: 20px; 
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        h1 { color: #4facfe; margin-bottom: 20px; }
+        .career-list { text-align: left; margin: 20px 0; }
+        .career-item { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 12px; 
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+        .career-item:hover { background: rgba(79, 172, 254, 0.1); }
+        .rank { font-weight: bold; color: #4facfe; margin-right: 10px; }
+        .confidence { color: #00d2ff; font-size: 0.9em; }
+        .btn { 
+            display: inline-block;
+            margin-top: 20px;
+            background: linear-gradient(90deg, #00d2ff, #3a7bd5); 
+            color: white; 
+            padding: 12px 25px; 
+            text-decoration: none; 
+            border-radius: 8px; 
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Your Top 10 Career Matches</h1>
+        <p>Based on our AI analysis, here are the paths most suitable for you:</p>
+        
+        <div class="career-list">
+            {% for pred in predictions %}
+            <div class="career-item">
+                <span><span class="rank">#{{ loop.index }}</span> {{ pred.career }}</span>
+                <span class="confidence">{{ pred.confidence }}% Match</span>
+            </div>
+            {% endfor %}
+        </div>
+
+        <a href="{{ url_for('home') }}" class="btn">Start New Analysis</a>
+    </div>
+</body>
+</html>

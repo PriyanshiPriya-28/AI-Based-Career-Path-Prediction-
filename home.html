@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Career Predictor | Data-Driven Selection</title>
+    
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='Image.png') }}">
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            
+            /* Image change 2: Background image path update */
+            background: linear-gradient(135deg, rgba(15, 47, 99, 0.9), rgba(2, 4, 53, 0.95)), 
+                        url("{{ url_for('static', filename='Ai.png') }}");
+            
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 24px;
+            width: 100%;
+            max-width: 900px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        h2 { font-size: 28px; margin-bottom: 25px; text-align: center; color: #fff; text-transform: uppercase; letter-spacing: 2px; }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 600; color: #dfefff; }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus { border-color: #00d2ff; background: rgba(255,255,255,0.15); }
+        option { background: #063e87; color: white; }
+
+        .btn-predict {
+            width: 100%;
+            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+            color: white;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: 0.4s;
+            text-transform: uppercase;
+            box-shadow: 0 10px 20px rgba(0, 210, 255, 0.3);
+        }
+
+        .btn-predict:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(0, 210, 255, 0.5); }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <form id="datasetForm" action="/predict" method="POST">
+        <h2>Career Prediction Analysis</h2>
+        
+        <div class="form-grid">
+            <div class="form-group">
+                <label>Current Field</label>
+                <select name="Field" required>
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Engineering">Engineering</option>
+                    <option value="Medicine">Medicine</option>
+                    <option value="Law">Law</option>
+                    <option value="Marketing">Marketing</option>
+                    <option value="Business">Business</option>
+                    <option value="Psychology">Psychology</option>
+                    <option value="Architecture">Architecture</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Biology">Biology</option>
+                    <option value="Art">Art</option>
+                    <option value="Music">Music</option>
+                    <option value="Finance">Finance</option>
+                    <option value="Education">Education</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>GPA (2.5 - 5.0)</label>
+                <input type="number" step="0.01" name="GPA" min="2.5" max="5.0" placeholder="e.g. 3.75" required>
+            </div>
+
+            <div class="form-group">
+                <label>Extracurricular Activities (0-9)</label>
+                <input type="number" name="Extracurricular_Activities" min="0" max="9" required>
+            </div>
+
+            <div class="form-group">
+                <label>Internships (0-2)</label>
+                <input type="number" name="Internships" min="0" max="2" required>
+            </div>
+
+            <div class="form-group">
+                <label>Projects (0-4)</label>
+                <input type="number" name="Projects" min="0" max="4" required>
+            </div>
+
+            <div class="form-group">
+                <label>Leadership Positions (0/1)</label>
+                <select name="Leadership_Positions" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Field Specific Courses (0-9)</label>
+                <input type="number" name="Field_Specific_Courses" min="0" max="9" required>
+            </div>
+
+            <div class="form-group">
+                <label>Research Experience (0/1)</label>
+                <select name="Research_Experience" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Coding Skills (0-4)</label>
+                <input type="number" name="Coding_Skills" min="0" max="4" required>
+            </div>
+
+            <div class="form-group">
+                <label>Communication Skills (0-4)</label>
+                <input type="number" name="Communication_Skills" min="0" max="4" required>
+            </div>
+
+            <div class="form-group">
+                <label>Problem Solving Skills (0-4)</label>
+                <input type="number" name="Problem_Solving_Skills" min="0" max="4" required>
+            </div>
+
+            <div class="form-group">
+                <label>Teamwork Skills (0-4)</label>
+                <input type="number" name="Teamwork_Skills" min="0" max="4" required>
+            </div>
+
+            <div class="form-group">
+                <label>Analytical Skills (0-4)</label>
+                <input type="number" name="Analytical_Skills" min="0" max="4" required>
+            </div>
+
+            <div class="form-group">
+                <label>Presentation Skills (0-4)</label>
+                <input type="number" name="Presentation_Skills" min="0" max="4" required>
+            </div>
+
+            <div class="form-group">
+                <label>Networking Skills (0-4)</label>
+                <input type="number" name="Networking_Skills" min="0" max="4" required>
+            </div>
+
+            <div class="form-group">
+                <label>Industry Certifications (0/1)</label>
+                <select name="Industry_Certifications" required>
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-predict">Predict My Career Path →</button>
+    </form>
+</div>
+
+</body>
+</html>
