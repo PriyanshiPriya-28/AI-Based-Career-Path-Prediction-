@@ -1,147 +1,622 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>AI Career Predictor - Your Future Starts Here</title>
+
 
 <link rel="icon" type="image/png" href="{{ url_for('static', filename='Image.png') }}">
 
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+
 <style>
-    /* CSS & Layout */
-    body {
-        margin: 0;
-        font-family: 'Segoe UI', Arial, sans-serif;
-        
-        /* Change 2: Body Background Image */
-        background: linear-gradient(120deg, rgba(15, 47, 99, 0.85), rgba(2, 4, 53, 0.95)), 
-                    url("{{ url_for('static', filename='Ai.png') }}");
-        
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        color: white;
-        overflow-x: hidden;
+
+
+body {
+
+    margin:0;
+
+    font-family:'Segoe UI',Arial,sans-serif;
+
+
+    background:
+
+    linear-gradient(
+        120deg,
+        rgba(15,47,99,0.85),
+        rgba(2,4,53,0.95)
+    ),
+
+    url("{{ url_for('static', filename='Ai.png') }}");
+
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-attachment:fixed;
+
+
+    color:white;
+
+    overflow-x:hidden;
+
+}
+
+
+
+/* HEADER */
+
+
+header {
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+
+    padding:20px 60px;
+
+
+    background:rgba(0,0,0,0.2);
+
+    backdrop-filter:blur(8px);
+
+}
+
+
+
+.logo {
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+
+    font-size:24px;
+
+    font-weight:bold;
+
+}
+
+
+
+.logo img {
+
+    height:45px;
+
+    border-radius:8px;
+
+}
+
+
+
+
+nav a {
+
+    color:white;
+
+    text-decoration:none;
+
+    margin:0 15px;
+
+    font-size:16px;
+
+    transition:0.3s;
+
+}
+
+
+
+nav a:hover {
+
+    color:#4facfe;
+
+}
+
+
+
+
+/* HERO */
+
+
+.hero {
+
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+
+    padding:90px 60px;
+
+
+}
+
+
+
+.hero-text {
+
+    max-width:600px;
+
+}
+
+
+
+.hero-text h1 {
+
+
+    font-size:52px;
+
+
+    background:
+
+    linear-gradient(
+        to right,
+        white,
+        #4facfe
+    );
+
+
+    -webkit-background-clip:text;
+
+    -webkit-text-fill-color:transparent;
+
+}
+
+
+
+.hero-text p {
+
+
+    font-size:20px;
+
+    color:#dfefff;
+
+    margin-bottom:35px;
+
+
+}
+
+
+
+
+.btn {
+
+
+    padding:15px 35px;
+
+
+    border-radius:30px;
+
+
+    text-decoration:none;
+
+
+    background:white;
+
+
+    color:#020435;
+
+
+    font-weight:bold;
+
+
+}
+
+
+
+.btn:hover {
+
+
+    background:transparent;
+
+
+    color:white;
+
+
+    border:2px solid white;
+
+
+}
+
+
+
+
+
+.hero-img img {
+
+
+    width:550px;
+
+
+    animation:float 4s infinite ease-in-out;
+
+
+}
+
+
+
+@keyframes float {
+
+
+    50%{
+
+        transform:translateY(-20px);
+
     }
 
-    header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px 60px;
-        background: rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(5px);
-    }
+}
 
-    .logo {
-        font-size: 24px;
-        font-weight: bold;
-        display: flex;       
-        align-items: center; 
-        gap: 12px;           
-    }
 
-    .logo img {
-        height: 45px;        
-        width: auto;
-        border-radius: 8px;  
-    }
 
-    nav a {
-        color: white;
-        text-decoration: none;
-        margin: 0 18px;
-        font-size: 16px;
-        font-weight: 500;
-        transition: 0.3s;
-    }
 
-    nav a:hover { color: #4facfe; text-shadow: 0 0 10px rgba(79, 172, 254, 0.5); }
+/* CARDS */
 
-    .hero {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 100px 60px;
-        min-height: 60vh;
-    }
 
-    .hero-text { max-width: 600px; }
+.cards-section {
 
-    .hero-text h1 {
-        font-size: 52px;
-        line-height: 1.1;
-        margin-bottom: 25px;
-        background: linear-gradient(to right, #fff, #4facfe);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
 
-    .hero-text p {
-        font-size: 20px;
-        margin-bottom: 35px;
-        color: #dfefff;
-        line-height: 1.6;
-    }
+    display:flex;
 
-    .btn-group { display: flex; gap: 20px; }
 
-    .btn {
-        padding: 15px 35px;
-        border-radius: 30px;
-        font-size: 16px;
-        font-weight: bold;
-        text-decoration: none;
-        transition: 0.4s;
-        text-align: center;
-    }
+    justify-content:center;
 
-    .btn-primary { background: #063e87; color: white; border: 2px solid #063e87; }
-    .btn-primary:hover { background: transparent; transform: scale(1.05); }
 
-    .btn-secondary { background: white; color: #020435; border: 2px solid white; }
-    .btn-secondary:hover { background: transparent; color: white; transform: scale(1.05); }
+    gap:25px;
 
-    .hero-img img {
-        width: 550px;
-        filter: drop-shadow(0 0 20px rgba(79, 172, 254, 0.3));
-        animation: float 4s ease-in-out infinite;
-    }
 
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
-    }
+    padding:30px 60px 80px;
+
+
+}
+
+
+
+.custom-card {
+
+
+    width:230px;
+
+
+    padding:25px;
+
+
+    text-align:center;
+
+
+    background:
+
+    rgba(6,62,135,0.45);
+
+
+    backdrop-filter:blur(10px);
+
+
+    border-radius:18px;
+
+
+    border:1px solid rgba(79,172,254,0.3);
+
+
+    transition:0.4s;
+
+
+}
+
+
+
+.custom-card:hover {
+
+
+    transform:translateY(-10px);
+
+
+    box-shadow:
+
+    0 15px 35px rgba(79,172,254,0.4);
+
+
+}
+
+
+
+.icon-container {
+
+
+    width:45px;
+
+    height:45px;
+
+
+    border-radius:50%;
+
+
+    display:flex;
+
+
+    align-items:center;
+
+
+    justify-content:center;
+
+
+    margin:auto;
+
+
+    margin-bottom:15px;
+
+
+    background:rgba(255,255,255,0.1);
+
+
+    color:#4facfe;
+
+
+}
+
+
+
+.custom-card h3 {
+
+
+    font-size:18px;
+
+}
+
+
+
+.custom-card p {
+
+
+    color:#dfefff;
+
+    font-size:13px;
+
+    line-height:1.5;
+
+}
+
+
+
+
+@media(max-width:900px){
+
+
+.hero{
+
+flex-direction:column;
+
+text-align:center;
+
+}
+
+
+.hero-img img{
+
+width:350px;
+
+}
+
+
+.cards-section{
+
+flex-wrap:wrap;
+
+}
+
+
+}
+
+
 
 </style>
+
+
 </head>
+
+
+
 
 <body>
 
+
+
+
 <header>
-    <div class="logo">
-        <img src="{{ url_for('static', filename='Image.png') }}" alt="Logo"> 
-        <span>CareerAI</span>
-    </div>
-    <nav>
-        <a href="{{ url_for('about') }}">About Project</a>
-        <a href="{{ url_for('process') }}">How it Works</a>
-    </nav>
+
+
+<div class="logo">
+
+
+<img src="{{ url_for('static', filename='Image.png') }}">
+
+
+<span>CareerAI</span>
+
+
+</div>
+
+
+
+
+<nav>
+
+
+<a href="{{ url_for('index') }}">
+Home
+</a>
+
+
+<a href="{{ url_for('about') }}">
+About Project
+</a>
+
+
+<a href="{{ url_for('process') }}">
+How it Works
+</a>
+
+
+<a href="{{ url_for('contact') }}">
+Contact
+</a>
+
+
+</nav>
+
+
 </header>
 
+
+
+
+
 <section class="hero">
-    <div class="hero-text">
-        <h1>Navigate Your Career with AI Intelligence</h1>
-        <p>Find Your Perfect Career with the Power of AI.</p>
-        
-        <div class="btn-group">
-            <a href="{{ url_for('home') }}" class="btn btn-secondary">Get Started</a>
-        </div>
-    </div>
-    <div class="hero-img">
-        <img src="{{ url_for('static', filename='Ai.png') }}" alt="AI Career Illustration">
-    </div>
+
+
+<div class="hero-text">
+
+
+<h1>
+Navigate Your Career with AI Intelligence
+</h1>
+
+
+<p>
+Find Your Perfect Career with the Power of AI.
+</p>
+
+
+
+<a href="{{ url_for('home') }}" class="btn">
+
+Get Started
+
+</a>
+
+
+
+</div>
+
+
+
+
+<div class="hero-img">
+
+
+<img src="{{ url_for('static', filename='Ai.png') }}">
+
+
+</div>
+
+
+
 </section>
 
+
+
+
+
+
+<section class="cards-section">
+
+
+
+<div class="custom-card">
+
+
+<div class="icon-container">
+
+<i class="fa-solid fa-brain"></i>
+
+</div>
+
+
+<h3>
+AI Career Prediction
+</h3>
+
+
+<p>
+Machine Learning models predict suitable career paths.
+</p>
+
+
+</div>
+
+
+
+
+
+<div class="custom-card">
+
+
+<div class="icon-container">
+
+<i class="fa-solid fa-chart-line"></i>
+
+</div>
+
+
+<h3>
+Skill Analysis
+</h3>
+
+
+<p>
+Analyze skills and find areas for improvement.
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="custom-card">
+
+
+<div class="icon-container">
+
+<i class="fa-solid fa-graduation-cap"></i>
+
+</div>
+
+
+<h3>
+Career Guidance
+</h3>
+
+
+<p>
+Get personalized learning and career recommendations.
+</p>
+
+
+</div>
+
+
+
+</section>
+
+
+
+
 </body>
+
 </html>
