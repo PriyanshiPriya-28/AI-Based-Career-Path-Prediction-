@@ -26,6 +26,11 @@ def about():
 def process():
     return render_template('process.html')
 
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
+
+
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
